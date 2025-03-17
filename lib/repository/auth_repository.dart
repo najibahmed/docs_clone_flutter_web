@@ -112,4 +112,9 @@ class AuthRepository {
     }
     return errorModel;
   }
+
+  void singOut ()async{
+    await _googleSignIn.signOut();
+      _localStorageRepository.setToken('');
+  }
 }

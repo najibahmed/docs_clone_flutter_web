@@ -14,14 +14,22 @@ module.exports = class AuthController {
             if (!existUser) {
                 // return res.status(400).json({ message: "User already exist!" });
                 const response = await authService.registerUser(name, email, profilePic);
+                const token = jwt.sign({ id: response._id }, process.env.JWT_SECRET);
+                res.status(200).json({
+                    message: "User created.",
+                    user: response,
+                    token: token
+                });
             }
-            const token = jwt.sign({ id: response._id }, process.env.JWT_SECRET);
+            const token = jwt.sign({ id: existUser._id }, process.env.JWT_SECRET);
+    
+                res.status(200).json({
+                    message: "User created.",
+                    user: existUser,
+                    token: token
+                });
 
-            res.status(200).json({
-                message: "User created.",
-                user: response,
-                token: token
-            });
+
         } catch (error) {
             console.log(error);
             res.status(500).json({
