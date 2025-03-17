@@ -6,29 +6,29 @@ class UserModel {
   final String email;
   final String name;
   final String profilePic;
-  final String uid;
-  final String token;
+  final String id; 
+  final String? token;
 
   UserModel({
     required this.email,
     required this.name,
     required this.profilePic,
-    required this.uid,
-    required this.token,
+    required this.id,
+    this.token,
   });
 
   UserModel copyWith({
     String? email,
     String? name,
     String? profilePic,
-    String? uid,
+    String? id,
     String? token,
   }) {
     return UserModel(
       email: email ?? this.email,
       name: name ?? this.name,
       profilePic: profilePic ?? this.profilePic,
-      uid: uid ?? this.uid,
+      id: id ?? this.id,
       token: token ?? this.token,
     );
   }
@@ -38,7 +38,7 @@ class UserModel {
       'email': email,
       'name': name,
       'profilePic': profilePic,
-      '_id': uid,
+      'id': id,
       'token': token,
     };
   }
@@ -48,8 +48,8 @@ class UserModel {
       email: map['email'] as String,
       name: map['name'] as String,
       profilePic: map['profilePic'] as String,
-      uid: map['_id'] as String,
-      token: map['token'] as String,
+      id: map['id'] as String,
+      token: map['token'] != null ? map['token'] as String : null,
     );
   }
 
@@ -59,7 +59,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(email: $email, name: $name, profilePic: $profilePic, uid: $uid, token: $token)';
+    return 'UserModel(email: $email, name: $name, profilePic: $profilePic, id: $id, token: $token)';
   }
 
   @override
@@ -70,7 +70,7 @@ class UserModel {
       other.email == email &&
       other.name == name &&
       other.profilePic == profilePic &&
-      other.uid == uid &&
+      other.id == id &&
       other.token == token;
   }
 
@@ -79,7 +79,7 @@ class UserModel {
     return email.hashCode ^
       name.hashCode ^
       profilePic.hashCode ^
-      uid.hashCode ^
+      id.hashCode ^
       token.hashCode;
   }
 }
