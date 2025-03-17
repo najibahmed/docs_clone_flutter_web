@@ -20,6 +20,22 @@ module.exports = class AuthController {
             });
         }
     }
+    async getDoc(req, res) {
+        try {
+            const result = await docService.getDocuments(req.user)
+            if (result) {
+                res.status(200).json({
+                    message: "Document fetched",
+                    documents: result,
+                });
+            }
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({
+                error: "Internal Server error:",
+            });
+        }
+    }
 
 
 

@@ -11,4 +11,8 @@ module.exports = class DocumentService {
         const document= await doc.save();
         return document;
    }
+   async getDocuments (userid){
+        const documents= await DocumentModel.find({uid:userid});
+        return documents;
+   }
 };
