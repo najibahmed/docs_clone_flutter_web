@@ -7,5 +7,7 @@ const auth = require("../middlewares/auth");
 
 
 router.post("/create",auth, documentController.CreateDoc)
-router.get("/me",auth, documentController.getDoc)
+router.post("/title",auth, documentController.UpdateDocTitle)
+router.get("/",auth, documentController.GetAllDoc)
+router.get("/:id",auth, documentController.GetSingleDoc)
 module.exports = router;

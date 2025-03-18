@@ -40,6 +40,7 @@ dependencies:
   http:
   shared_preferences:
   routemaster: ^1.0.1 
+  flutter_quill: 10.7.0
 
 dev_dependencies:
   flutter_test:
