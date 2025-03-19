@@ -21,6 +21,7 @@ module.exports = class AuthController {
                     token: token
                 });
             }
+            console.log(`existUser Id RegisterUser: ${existUser._id}`);
             const token = jwt.sign({ id: existUser._id }, process.env.JWT_SECRET);
     
                 res.status(200).json({
@@ -42,7 +43,6 @@ module.exports = class AuthController {
         try {
             const user = await authService.findUserById(req.user);
             const token = req.token;
-            console.log("user  " + user);
             res.status(200).json({
                 message: "User found.",
                 user: user,
