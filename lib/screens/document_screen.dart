@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_docs_clone/models/document_model.dart';
 import 'package:flutter_docs_clone/models/error_model.dart';
 import 'package:flutter_docs_clone/repository/auth_repository.dart';
@@ -144,7 +145,12 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
                   backgroundColor: kBluekColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
-              onPressed: () {},
+              onPressed: () {
+                Clipboard.setData( ClipboardData(text: 'http://localhost:3000/#/document/${widget.id}'))
+                .then((value){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Link Copied")));
+                });
+              },
               icon: const Icon(
                 Icons.lock,
                 size: 16,
